@@ -1,0 +1,14 @@
+h2{
+    font-size: 20px;
+    text-transform: uppercase;
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+p{
+    width: 50%;
+    position: relative;
+    top: 50px;
+    margin: auto;
+}

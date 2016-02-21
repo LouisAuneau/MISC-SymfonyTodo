@@ -1,0 +1,14 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/home.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div id="container">
+        <h1>Bienvenue sur la TodoList</h1>
+        <a class="button login-btn" href="{{ path("fos_user_security_login") }}">Se connecter</a>
+        <a class="button registration-btn" href="{{ path("fos_user_registration_register") }}">S'inscrire</a>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At atque autem culpa dolore dolorum ducimus, eos inventore ipsa laborum magnam nemo odio quam saepe similique totam unde vero! Aperiam blanditiis distinctio, dolorem dolores eius facere illo ipsa minima omnis, perferendis placeat praesentium quisquam, quos ratione saepe sed similique. Aliquid distinctio ex fuga in, ipsum molestias nulla numquam pariatur. Consequuntur dignissimos dolor dolorem doloribus eveniet, laborum libero minus necessitatibus quibusdam repellendus repudiandae similique sint, sunt veritatis vero. Adipisci culpa dolore dolores eius, esse fugiat qui quibusdam repellendus sed sint! Commodi incidunt nulla, optio possimus quasi quis ratione. Dolorum nulla quia quod.</p>
+    </div>
+{% endblock %}

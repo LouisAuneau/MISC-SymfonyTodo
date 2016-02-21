@@ -1,0 +1,33 @@
+todo_home:
+    path:     /
+    defaults: { _controller: AppBundle:Todo:index }
+
+todo_task_list:
+    path:     /liste-des-taches
+    defaults: { _controller: AppBundle:Todo:taskList }
+
+todo_add_task:
+    path:     /tache/ajout
+    defaults: { _controller: AppBundle:Todo:index }
+
+todo_see_task:
+    path:     /tache/{id}/voir
+    defaults: { _controller: AppBundle:Todo:index }
+    requirements:
+        id: \d+
+
+todo_edit_task:
+    path:     /tache/{id}/edition
+    defaults: { _controller: AppBundle:Todo:index }
+    requirements:
+        id: \d+
+
+todo_done_task:
+    path:     /tache/{id}/fait
+    defaults: { _controller: AppBundle:Todo:index }
+    requirements:
+        id: \d+
+
+todo_remove_task:
+    path:     /tache/{id}/supprimer
+    defaults: { _controller: AppBundle:Todo:index }
