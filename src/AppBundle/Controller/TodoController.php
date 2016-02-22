@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Task;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -37,6 +38,13 @@ class TodoController extends Controller
         if(!$this->container->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')){
             return $this->redirect($this->generateUrl("todo_home"));
         }
+
+        // Retrieving Entity Manager
+        $em = $this->getDoctrine()->getManager();
+        $task = new Task();
+        $task->setTitle("Tâche 1");
+        $task->setEndDate(new \DateTime("now"));
+        $task->setDescription("Il s'agit de la toute première tâche !");
 
         return $this->render('AppBundle::task_list.html.twig');
     }

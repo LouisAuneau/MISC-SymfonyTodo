@@ -14,8 +14,8 @@
             <a href="{{ path("todo_home") }}" title="Accueil"><h1>TodoList</h1></a>
             <div id="user-space">
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                    {{ app.user.username }}
-                    <a href="{{ path("fos_user_security_logout") }}"></a><img src="{{ asset('img/logout.png') }}" alt="Déconnexion" />
+                    <p class="profile">{{ app.user.username }}</p>
+                    <a href="{{ path("fos_user_security_logout") }}"><img src="{{ asset('img/logout.png') }}" alt="Déconnexion" class="loggout-btn"/></a>
                 {% else %}
                     <a class="button login-btn" href="{{ path("fos_user_security_login") }}">Se connecter</a>
                     <a class="button registration-btn" href="{{ path("fos_user_registration_register") }}">S'inscrire</a>
