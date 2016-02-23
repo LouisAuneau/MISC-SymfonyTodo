@@ -11,8 +11,8 @@ todo_add_task:
     defaults: { _controller: AppBundle:Todo:index }
 
 todo_see_task:
-    path:     /tache/{id}/voir
-    defaults: { _controller: AppBundle:Todo:index }
+    path:     /tache/{id}
+    defaults: { _controller: AppBundle:Todo:viewTask }
     requirements:
         id: \d+
 

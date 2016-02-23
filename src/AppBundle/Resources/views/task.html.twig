@@ -1,0 +1,22 @@
+{% extends '::base.html.twig' %}
+
+{# Loading stylesheet for this view #}
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/task.css') }}">
+{% endblock %}
+
+{# Body of a task #}
+{% block body %}
+    <div id="container">
+        <div id="task">
+            <section id="task-head">
+                <h5>{{ task.title }}</h5>
+                <p>{{ task.endDate|date('d-m-Y') }}</p>
+            </section>
+            <p id="task-description">
+                {{ task.description }}
+            </p>
+        </div>
+    </div>
+{% endblock %}
+
