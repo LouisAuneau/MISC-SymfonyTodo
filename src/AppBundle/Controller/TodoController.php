@@ -28,29 +28,21 @@ class TodoController extends Controller
     }
 
     /**
-     * @Route("/liste-des-taches", name="homepage")
+     * @Route("/tache/list", name="homepage")
      * @param Request $request Request object automatically passed when action is called.
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function taskListAction(Request $request){
-        // If user is not logged, we redirect him to the homepage.
-        if(!$this->container->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED'))
-            return $this->redirect($this->generateUrl("todo_home"));
-
         // Retrieving Entity Manager
         $em = $this->getDoctrine()->getManager();
 
-        // Creating a task
-        $task = new Task();
-        $task->setTitle("Tâche 1");
-        $task->setEndDate(new \DateTime("now"));
-        $task->setDescription("Il s'agit de la toute première tâche !");
+        // Retrieving user and getting his tasks
+        $user = $this->getUser();
+        $tasks = $user->getTasks();
 
-        /*$em->persist($task);
-        $em->flush();*/
-
-        return $this->render('AppBundle::task_list.html.twig');
+        $viewParams = ["tasks" => $tasks];
+        return $this->render('AppBundle::task_list.html.twig', $viewParams);
     }
 
     /**

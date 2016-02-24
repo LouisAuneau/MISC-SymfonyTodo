@@ -25,7 +25,7 @@ class Task
     /**
      * @var User
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="tasks")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
@@ -130,28 +130,5 @@ class Task
     public function getDescription()
     {
         return $this->description;
-    }
-
-    /**
-     * Set user
-     *
-     * @param User $user
-     * @return Task
-     */
-    public function setUser(User $user)
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * Get user
-     *
-     * @return \AppBundle\Entity\User 
-     */
-    public function getUser()
-    {
-        return $this->user;
     }
 }

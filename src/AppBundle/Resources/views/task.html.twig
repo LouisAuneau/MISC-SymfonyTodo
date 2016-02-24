@@ -8,6 +8,8 @@
 {# Body of a task #}
 {% block body %}
     <div id="container">
+        <h2><a href="{{ path('todo_task_list') }}"><span style="margin-right: 10px;"><</span>Retour à la liste des tâches</a></h2>
+        <hr/>
         <div id="task">
             <section id="task-head">
                 <h5>{{ task.title }}</h5>

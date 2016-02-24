@@ -1,7 +1,17 @@
 {% extends '::base.html.twig' %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/task_list.css') }}">
+{% endblock %}
+
 {% block body %}
-    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-        Hi {{ app.user.username }}
-    {% endif %}
+    <div id="container">
+        <h2>Vos Tâches :</h2>
+        <hr/>
+        <ul>
+        {% for task in tasks %}
+            <li><a href="{{ path('todo_see_task', {'id': task.id}) }}">{{ task.title }}</a></li>
+        {% endfor %}
+        </ul>
+    </div>
 {% endblock %}

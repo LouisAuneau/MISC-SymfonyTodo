@@ -11,22 +11,37 @@ security:
             id: fos_user.user_provider.username
 
     firewalls:
+        login:
+            pattern:  ^/connexion
+            anonymous: true
+
         main:
             pattern: ^/
+
             form_login:
                 provider: fos_userbundle
                 csrf_token_generator: security.csrf.token_manager
-                # if you are using Symfony < 2.8, use the following config instead:
-                # csrf_provider: form.csrf_provider
+                login_path: /connexion
 
             logout:
                 path:   /deconnexion
                 target: /
+
             anonymous:    true
 
+        taches:
+            pattern: ^/tache
+            anonymous: false
+            form_login:
+                provider: fos_userbundle
+                csrf_token_generator: security.csrf.token_manager
+                login_path: fos_user_security_login
+                check_path: fos_user_security_login_check
+            logout: true
+
     access_control:
-        - { path: ^/connexion$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/deconnexion, role: IS_AUTHENTICATED_REMEMBERED }
+        - { path: ^/connexion, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/tache, role: ROLE_USER }
         - { path: ^/inscription, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/, role: ROLE_ADMIN }

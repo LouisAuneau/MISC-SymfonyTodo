@@ -3,7 +3,7 @@ todo_home:
     defaults: { _controller: AppBundle:Todo:index }
 
 todo_task_list:
-    path:     /liste-des-taches
+    path:     /tache/liste
     defaults: { _controller: AppBundle:Todo:taskList }
 
 todo_add_task:

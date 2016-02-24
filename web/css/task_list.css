@@ -1,0 +1,27 @@
+ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+li{
+    height: 60px;
+    text-align: left;
+    background-color: #5F92A3;
+    padding: 0 15px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+li a{
+    line-height: 60px;
+    text-transform: uppercase;
+    font-size: 16px;
+    color: #DAEAF0;
+    font-weight: bold;
+}
+
+hr{
+    margin-bottom: 15px;
+}

@@ -48,7 +48,6 @@ class User extends BaseUser
     public function addTask(\AppBundle\Entity\Task $tasks)
     {
         $this->tasks[] = $tasks;
-        $tasks->setUser($this);
 
         return $this;
     }
