@@ -12,4 +12,20 @@ use Doctrine\ORM\EntityRepository;
  */
 class TaskRepository extends EntityRepository
 {
+    /**
+     * To get all tasks that aren't done, for a given user or for all.
+     * @param null $user User that has created those tasks. Null if you want all users' tasks.
+     *
+     * @return array Array of not done tasks.
+     */
+    public function getNotDoneTasks($user = null){
+        if(is_null($user))
+            return $this->findBy(
+                ["done" => false]
+            );
+        else
+            return $this->findBy(
+                ["user" => $user, "done" => false]
+            );
+    }
 }

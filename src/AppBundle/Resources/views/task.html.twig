@@ -19,6 +19,10 @@
                 {{ task.description }}
             </p>
         </div>
+        <div id="task-commands">
+            <a href="{{ path('todo_edit_task', {'id': task.id}) }}" class="command-btn"><img src="{{ asset('img/edit-button.png') }}" alt="Éditer la tâche"/></a>
+            <a href="{{ path('todo_remove_task', {'id': task.id}) }}" class="command-btn"><img src="{{ asset('img/delete-button.png') }}" alt="Supprimer la tâche"/></a>
+        </div>
     </div>
 {% endblock %}
 

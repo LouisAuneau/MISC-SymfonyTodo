@@ -10,8 +10,9 @@
         <hr/>
         <ul>
         {% for task in tasks %}
-            <li><a href="{{ path('todo_see_task', {'id': task.id}) }}">{{ task.title }}</a></li>
+            <li><a href="{{ path('todo_see_task', {'id': task.id}) }}">{{ task.title }}</a><a href="{{ path('todo_done_task', {'id': task.id}) }}" class="done-task-btn"><img src="{{ asset('img/done-task.png') }}" alt="Tâche faite !"/></a></li>
         {% endfor %}
+            <a href="{{ path('todo_add_task') }}"><li>Ajouter une tâche</li></a>
         </ul>
     </div>
 {% endblock %}

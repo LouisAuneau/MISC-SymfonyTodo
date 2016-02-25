@@ -45,12 +45,20 @@ class Task
     private $endDate;
 
     /**
-     * @var string
+     * @var string description Task description.
      *
      * @ORM\Column(name="description", type="text", nullable=true)
      *
      */
     private $description;
+
+    /**
+     * @var boolean done Say if a task is done or not.
+     *
+     * @ORM\Column(name="done", type="boolean")
+     *
+     */
+    private $done = false;
 
 
     /**
@@ -153,5 +161,28 @@ class Task
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set done
+     *
+     * @param boolean $done
+     * @return Task
+     */
+    public function setDone($done)
+    {
+        $this->done = $done;
+
+        return $this;
+    }
+
+    /**
+     * Get done
+     *
+     * @return boolean 
+     */
+    public function getDone()
+    {
+        return $this->done;
     }
 }

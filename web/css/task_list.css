@@ -5,6 +5,7 @@ ul{
 }
 
 li{
+    margin-bottom: 10px;
     height: 60px;
     text-align: left;
     background-color: #5F92A3;
@@ -22,6 +23,30 @@ li a{
     font-weight: bold;
 }
 
+li a:hover{
+    color: white;
+}
+
 hr{
     margin-bottom: 15px;
+}
+
+.done-task-btn{
+    display: inline-block;
+    float: right;
+}
+
+.done-task-btn img{
+    width: 15px;
+    height: 15px;
+}
+
+a li{
+    color: darkgray;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: center;
+    text-indent: inherit;
+    line-height: 58px;
+    background-color: lightgray;
 }

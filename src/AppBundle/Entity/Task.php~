@@ -25,7 +25,7 @@ class Task
     /**
      * @var User
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="tasks")
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
@@ -45,12 +45,20 @@ class Task
     private $endDate;
 
     /**
-     * @var string
+     * @var string description Task description.
      *
      * @ORM\Column(name="description", type="text", nullable=true)
      *
      */
     private $description;
+
+    /**
+     * @var boolean done Say if a task is done or not.
+     *
+     * @ORM\Column(name="done", type="boolean")
+     *
+     */
+    private $done = false;
 
 
     /**
@@ -130,5 +138,28 @@ class Task
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * Set user
+     *
+     * @param User $user
+     * @return Task
+     */
+    public function setUser(User $user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

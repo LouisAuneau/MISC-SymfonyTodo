@@ -8,7 +8,7 @@ todo_task_list:
 
 todo_add_task:
     path:     /tache/ajout
-    defaults: { _controller: AppBundle:Todo:index }
+    defaults: { _controller: AppBundle:Todo:addTask }
 
 todo_see_task:
     path:     /tache/{id}
@@ -24,10 +24,10 @@ todo_edit_task:
 
 todo_done_task:
     path:     /tache/{id}/fait
-    defaults: { _controller: AppBundle:Todo:index }
+    defaults: { _controller: AppBundle:Todo:doneTask }
     requirements:
         id: \d+
 
 todo_remove_task:
     path:     /tache/{id}/supprimer
-    defaults: { _controller: AppBundle:Todo:index }
+    defaults: { _controller: AppBundle:Todo:removeTask }
