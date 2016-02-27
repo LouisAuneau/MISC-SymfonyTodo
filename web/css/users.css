@@ -45,3 +45,24 @@ label{
     width: 125px;
     margin-bottom: 10px;
 }
+
+#user-commands{
+    margin-top: 15px;
+    float: right;
+}
+
+.command-btn{
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+    overflow: hidden;
+    background-color: lightgray;
+    margin-left: 10px;
+}
+
+.command-btn img{
+    width: 25px;
+    height: 25px;
+    position: relative;
+    top: 13px;
+}

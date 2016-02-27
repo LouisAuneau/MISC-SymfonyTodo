@@ -34,6 +34,7 @@ hr{
 .done-task-btn{
     display: inline-block;
     float: right;
+    margin-top: 2px;
 }
 
 .done-task-btn img{
@@ -49,4 +50,28 @@ a li{
     text-indent: inherit;
     line-height: 58px;
     background-color: lightgray;
+}
+
+a:hover li{
+    color: #787878;
+}
+
+.task-category{
+    font-size: 12px;
+    font-style: italic;
+    text-align: left;
+    display: block;
+    margin-top: 25px;
+}
+
+.missedTask{
+    background-color: #B0664D;
+}
+
+.missedTask a{
+    color: #FFE6DE;
+}
+
+.missedTask a:hover{
+    color: white;
 }

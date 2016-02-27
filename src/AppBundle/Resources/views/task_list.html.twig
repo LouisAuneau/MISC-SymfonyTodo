@@ -8,10 +8,28 @@
     <div id="container">
         <h2>Vos Tâches :</h2>
         <hr/>
+
+        {# On going tasks #}
+        {% if onGoingTasks %}
+        <p class="task-category">Tâches en cours :</p>
         <ul>
-        {% for task in tasks %}
+        {% for task in onGoingTasks %}
             <li><a href="{{ path('todo_see_task', {'id': task.id}) }}">{{ task.title }}</a><a href="{{ path('todo_done_task', {'id': task.id}) }}" class="done-task-btn"><img src="{{ asset('img/done-task.png') }}" alt="Tâche faite !"/></a></li>
         {% endfor %}
+        </ul>
+        {% endif %}
+
+        {# Missed tasks #}
+        {% if missedTasks %}
+        <p class="task-category">Tâches dépassées :</p>
+        <ul>
+            {% for task in missedTasks %}
+                <li class="missedTask"><a href="{{ path('todo_see_task', {'id': task.id}) }}">{{ task.title }}</a><a href="{{ path('todo_done_task', {'id': task.id}) }}" class="done-task-btn"><img src="{{ asset('img/done-task.png') }}" alt="Tâche faite !"/></a></li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+        <ul>
             <a href="{{ path('todo_add_task') }}"><li>Ajouter une tâche</li></a>
         </ul>
     </div>

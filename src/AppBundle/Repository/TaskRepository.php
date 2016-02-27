@@ -18,14 +18,49 @@ class TaskRepository extends EntityRepository
      *
      * @return array Array of not done tasks.
      */
-    public function getNotDoneTasks($user = null){
-        if(is_null($user))
-            return $this->findBy(
-                ["done" => false]
-            );
-        else
-            return $this->findBy(
-                ["user" => $user, "done" => false]
-            );
+    public function getOnGoingTasks($user = null){
+        $queryBuilder = $this->createQueryBuilder('t');
+
+        // Tasks that end date is not passed yet.
+        $queryBuilder->where("t.endDate > :today")
+            ->setParameter("today", new \DateTime());
+
+        // Tasks that aren't done yet.
+        $queryBuilder->andWhere("t.done = :done")
+            ->setParameter("done", false);
+
+        // If user is set, getting only specified user's tasks.
+        if(!is_null($user)) {
+            $queryBuilder->andWhere("t.user = :user")
+                ->setParameter("user", $user);
+        }
+
+        return $queryBuilder->getQuery()->getResult();
+    }
+
+    /**
+     * To get all tasks that aren't done at the end date, for a given user or for all.
+     * @param null $user User that has created those tasks. Null if you want all users' tasks.
+     *
+     * @return array Array of not done tasks at the deadline.
+     */
+    public function getMissedTasks($user = null){
+        $queryBuilder = $this->createQueryBuilder('t');
+
+        // Tasks that end date is passed.
+        $queryBuilder->where("t.endDate < :today")
+            ->setParameter("today", new \DateTime());
+
+        // Tasks that aren't done.
+        $queryBuilder->andWhere("t.done = :done")
+            ->setParameter("done", false);
+
+        // If user is set, getting only specified user's tasks.
+        if(!is_null($user)) {
+            $queryBuilder->andWhere("t.user = :user")
+                ->setParameter("user", $user);
+        }
+
+        return $queryBuilder->getQuery()->getResult();
     }
 }

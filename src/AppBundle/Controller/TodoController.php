@@ -38,22 +38,13 @@ class TodoController extends Controller
         // Retrieving Entity Manager.
         $em = $this->getDoctrine()->getManager();
 
-        /*
-        $newTask = new Task();
-        $newTask->setTitle("Test de tâche");
-        $newTask->setUser($this->getUser());
-        $newTask->setDescription("Finir un truc. Ceci est la desccription.");
-        $newTask->setEndDate((new \DateTime())->setDate(2016, 2, 28));
-        $em->persist($newTask);
-        $em->flush();
-        */
-
         // Retrieving user and getting his tasks that aren't done.
         $user = $this->getUser();
-        $tasks = $em->getRepository('AppBundle:Task')->getNotDoneTasks($user);
+        $onGoingTasks = $em->getRepository('AppBundle:Task')->getOnGoingTasks($user);
+        $missedTasks = $em->getRepository('AppBundle:Task')->getMissedTasks($user);
 
         // Displaying all tasks.
-        $viewParams = ["tasks" => $tasks];
+        $viewParams = ["onGoingTasks" => $onGoingTasks, "missedTasks" => $missedTasks];
         return $this->render('AppBundle::task_list.html.twig', $viewParams);
     }
 
@@ -67,6 +58,7 @@ class TodoController extends Controller
     public function addTaskAction(Request $request){
         // Generate 10 years from actual year to put in year field of the form.
         $currentYear = (new \DateTime())->format('Y');
+        $currentDate = new \DateTime();
         $years = range($currentYear, $currentYear + 10);
 
         // Generating the form
@@ -75,7 +67,11 @@ class TodoController extends Controller
         $formBuilder = $this->get("form.factory")->createBuilder("form", $task);
         $formBuilder
             ->add("title", "text")
-            ->add("endDate", "date", ["years" => $years])
+            ->add("endDate", "date",
+                [
+                    "years" => $years,
+                    "data" => $currentDate
+                ])
             ->add("description", "textarea")
             ->add("save", "submit")
         ;

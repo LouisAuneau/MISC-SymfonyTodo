@@ -1,0 +1,43 @@
+#form_endDate{
+    display: inline-block;
+}
+
+#form_endDate select{
+    margin-right: 5px;
+}
+
+textarea{
+    display: block;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+form{
+    text-align: left;
+    margin-top: 25px;
+}
+
+label{
+    display: inline-block;
+    font-size: 13px;
+    min-width: 200px;
+    margin-bottom: 5px;
+}
+
+#form_save{
+    width: 100%;
+    margin-right: 10px;
+    border: 2px solid #5F92A3;
+    background-color: white;
+    color: #5F92A3;
+    padding: 5px 15px;
+    border-radius: 3px;
+}
+
+#form_save:hover{
+    color: white;
+    background-color: #5F92A3;
+    cursor: pointer;
+}
