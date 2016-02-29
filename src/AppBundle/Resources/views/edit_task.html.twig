@@ -1,0 +1,35 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/task_form.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div id="container">
+        <h2>Edition de la tâche :</h2>
+        <hr/>
+        {{ form_start(form) }}
+        {{ form_errors(form) }}
+
+        {# Task title #}
+        {{ form_label(form.title, "Titre de la tâche :") }}
+        {{ form_widget(form.title) }}
+        <br/>
+
+        {# Task end date #}
+        {{ form_label(form.endDate, "Date butoir :") }}
+        {{ form_widget(form.endDate) }}
+        <br/>
+
+        {# Task description #}
+        {{ form_label(form.description, "Description de la tâche :") }}
+        {{ form_widget(form.description) }}
+        <br/>
+
+        {# Submit button #}
+        {{ form_widget(form.save, {'label': 'Valider les changements'}) }}
+
+        {{ form_rest(form) }}
+    {{ form_end(form) }}
+    </div>
+{% endblock %}

@@ -18,7 +18,7 @@ todo_see_task:
 
 todo_edit_task:
     path:     /tache/{id}/edition
-    defaults: { _controller: AppBundle:Todo:index }
+    defaults: { _controller: AppBundle:Todo:editTask }
     requirements:
         id: \d+
 

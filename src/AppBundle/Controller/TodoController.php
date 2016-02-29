@@ -121,6 +121,50 @@ class TodoController extends Controller
 
 
     /**
+     * @Route("/tache/{id}/edition", name="todo_edit_task")
+     * @param Request $request Request object automatically passed when action is called.
+     * @param $id Id of the task that is displayed. If it doesn't exist, the page is redirected.
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     */
+    public function editTaskAction(Request $request, $id){
+        // Retrieving Entity Manager and current task
+        $em = $this->getDoctrine()->getManager();
+        $currentTask = $em->getRepository("AppBundle:Task")->find($id);
+
+        // Displaying task and managing errors
+        if(is_null($currentTask))
+            return $this->redirect($this->generateUrl("todo_task_list"));
+
+        // Generating form
+        $formBuilder = $this->get('form.factory')->createBuilder('form', $currentTask);
+        $formBuilder
+            ->add("title", "text")
+            ->add("endDate", "date")
+            ->add("description", "textarea")
+            ->add("save", "submit");
+        $form = $formBuilder->getForm();
+
+        // Validation of the form
+        $form->handleRequest($request);
+        if($form->isValid()){
+            // Hydrate object
+            $em->persist($currentTask);
+            $em->flush();
+
+            // Returning to task list.
+            return $this->redirect($this->generateUrl("todo_see_task", ["id" => $currentTask->getId()]));
+        }
+
+
+        $formView = $form->createView();
+        $viewParams = ["task" => $currentTask, "form" => $formView];
+        return $this->render("AppBundle::edit_task.html.twig", $viewParams);
+    }
+
+
+
+    /**
      * @Route("/tache/{id}/fait", name="todo_done_task")
      * @param Request $request Request object automatically passed when action is called.
      * @param $id Id of the task that will be done. If it doesn't exist, the page is redirected.

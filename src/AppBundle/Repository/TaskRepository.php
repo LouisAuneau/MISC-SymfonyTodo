@@ -22,7 +22,7 @@ class TaskRepository extends EntityRepository
         $queryBuilder = $this->createQueryBuilder('t');
 
         // Tasks that end date is not passed yet.
-        $queryBuilder->where("t.endDate > :today")
+        $queryBuilder->where("t.endDate >= :today")
             ->setParameter("today", new \DateTime());
 
         // Tasks that aren't done yet.
@@ -49,7 +49,7 @@ class TaskRepository extends EntityRepository
 
         // Tasks that end date is passed.
         $queryBuilder->where("t.endDate < :today")
-            ->setParameter("today", new \DateTime());
+            ->setParameter("today", new \DateTime("now"));
 
         // Tasks that aren't done.
         $queryBuilder->andWhere("t.done = :done")
